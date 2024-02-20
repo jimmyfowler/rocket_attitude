@@ -16,6 +16,8 @@ C = Kp + Ki/s + Kd*s
 
 % C = pid(Kp,Ki,Kd) % this does the same thing
 
+% bobabooey
+
 
 
 
