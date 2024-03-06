@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 # Moment of Inertia
-I = 10000
+I = 2333
 
 # FSFB GAINS
 k1 = 1000
@@ -76,7 +76,6 @@ ax[1].set_ylabel(r"$\omega$ [deg/s]", fontsize=15)
 ax[1].set_xlabel("Time [sec]", fontsize=15)
 
 fig.savefig("figs/states_time")
-fig.show()
 
 # phase plot
 fig2, ax2 = plt.subplots(1)
@@ -104,4 +103,5 @@ ax2.set_xlabel(r"$\theta$ [deg]", fontsize=12)
 ax2.set_ylabel(r"$\omega$ [deg/s]", fontsize=12)
 
 fig2.savefig("figs/phase_portrait")
-fig2.show()
+
+plt.show()
