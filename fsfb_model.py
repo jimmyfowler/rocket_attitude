@@ -9,11 +9,11 @@ I = 2333
 
 # FSFB GAINS
 k1 = 1000
-k2 = 0.05
+k2 = 0
 
 # INITIAL CONDITION
 theta_0 = np.pi/6 # rad
-omega_0 = np.pi/8 # rad/sec
+omega_0 = np.pi/16 # rad/sec
 
 # define / initialize error
 # this is not used to 
@@ -21,7 +21,7 @@ err = np.sqrt(theta_0**2 + omega_0**2)
 
 # initialize time and interval tracker
 t = np.array([0])
-dt = 0.1
+dt = 0.0001
 i = 0
 
 # initialize the states
@@ -35,7 +35,7 @@ while err > 0.001:
 
     # calculate next state
     next_theta = theta[i] + omega[i]*dt
-    next_omega = omega[i] + ( (-k1/I)*theta[i] - (k2*omega[i]) )
+    next_omega = omega[i] + ( (-k1/I)*theta[i] - (k2*omega[i]) )*dt
 
     # add next state to array
     theta = np.append(theta, next_theta)
@@ -48,7 +48,7 @@ while err > 0.001:
     t = np.append(t, t[i]+dt)
     i += 1
 
-    if t[i] > 10000:
+    if t[i] >= 50:
         print("It took too long!")
         break
 
@@ -103,5 +103,11 @@ ax2.set_xlabel(r"$\theta$ [deg]", fontsize=12)
 ax2.set_ylabel(r"$\omega$ [deg/s]", fontsize=12)
 
 fig2.savefig("figs/phase_portrait")
+
+Acl = np.array([  [0, 1],
+                [-k1/I, -k2/I]
+            ])
+
+print("eigenvalues", np.linalg.eig(Acl)[0])
 
 plt.show()
